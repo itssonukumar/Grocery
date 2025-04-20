@@ -4,9 +4,12 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import Home from './pages/Home.jsx';
 import {Toaster } from 'react-hot-toast'
 import Footer from './components/Footer.jsx';
+import { useAppContext } from './context/AppContext.jsx';
+import Login from './components/Login.jsx';
 
 const App = () => {
   const isSellerPath=useLocation().pathname.includes('seller');
+  const {showUserLogin}=useAppContext()
   return (
     <div>
   
@@ -19,6 +22,7 @@ const App = () => {
         </Routes>
       </div>
      {!isSellerPath && <Footer/>}
+     {showUserLogin ? <Login/> : null}
     </div>
   )
 }
