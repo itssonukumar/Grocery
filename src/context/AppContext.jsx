@@ -12,7 +12,7 @@ export const AppContextProvider = ({ children }) => {
     const [isSeller, setIsSeller] = useState(false)
     const [showUserLogin, setShowUserLogin] = useState(false)
     const [products, setProducts] = useState([])
-    const [cartItems, setCartItems] = useState([])
+    const [cartItems, setCartItems] = useState({})
     const [searchQuery, setSearchQuery] = useState([])
 
 
@@ -45,7 +45,7 @@ const updateCartItems=(itemId,quantity)=>{
 
 //remove products from cart
 
-const removeFromcart=(itemId)=>{
+const removeFromCart=(itemId)=>{
     let cartData=structuredClone(cartItems);
     if(cartData[itemId]){
         cartData[itemId] -=1;
@@ -85,7 +85,7 @@ const getCartAmount=()=>{
         fetchProducts()
     }, [])
 
-    const value = { navigate, user, setUser, setIsSeller, isSeller, showUserLogin, setShowUserLogin, products,currency,addToCart,updateCartItems,removeFromcart,cartItems,searchQuery,setSearchQuery,getCartAmount,getCartCount }
+    const value = { navigate, user, setUser, setIsSeller, isSeller, showUserLogin, setShowUserLogin, products,currency,addToCart,updateCartItems,removeFromCart,cartItems,searchQuery,setSearchQuery,getCartAmount,getCartCount }
     return <AppContext.Provider value={value}>
         {children}
     </AppContext.Provider>
